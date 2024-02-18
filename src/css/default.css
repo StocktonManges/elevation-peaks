@@ -1,0 +1,225 @@
+:root {
+  --app-font-family: "Inter", sans-serif;
+
+  --white: #fff;
+  --black: #000;
+
+  --bg-gray: #1c1f22;
+  /* --bg-gray: #c5c5c5; */
+  --bg-accent: #434244;
+
+  --font-base: #666;
+  --font-dark: #212529;
+  --font-light: #b0aebe;
+
+  --red: #9d2f20;
+  --orange: #bf882c;
+
+  --app-max-width: 1000px;
+  --app-width: 80%;
+
+  --small-radius: 0.313rem;
+  --medium-radius: 0.625rem;
+  --large-radius: 0.938rem;
+
+  --5px: 0.313rem;
+  --8px: 0.5rem;
+  --10px: 0.625rem;
+  --12px: 0.75rem;
+  --14px: 0.875rem;
+  --15px: 0.938rem;
+  --16px: 1rem;
+  --18px: 1.125rem;
+  --20px: 1.25rem;
+  --30px: 1.875rem;
+  --40px: 2.5rem;
+  --50px: 3.125rem;
+  --75px: 4.688rem;
+  --100px: 6.25rem;
+  --150px: 9.75rem;
+}
+
+/* Makes it so that the page scrolls instead of skipping when using anchor tags to 
+move to a different part of the page. */
+html {
+  scroll-behavior: smooth;
+}
+
+html#no-scroll {
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--app-font-family);
+  font-weight: 400;
+  font-size: 1rem;
+  /* This is set to make sure the browser doesn't change the line-spacing. */
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: var(--font-base);
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+section,
+footer,
+header,
+main,
+nav {
+  display: block;
+  width: 100%;
+  height: fit-content;
+}
+
+section {
+  padding: var(--50px) var(--15px);
+}
+
+/* This makes all elements adjust their size to fit within their parent
+element even when a border or padding is added. */
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+h2,
+h3 {
+  padding: 0;
+  margin: 0;
+}
+
+h2 {
+  font-size: var(--40px);
+  font-weight: 800;
+  color: var(--orange);
+}
+
+h3 {
+  font-size: var(--30px);
+  color: var(--orange);
+}
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+p {
+  color: var(--white);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  vertical-align: middle;
+  border-style: none;
+}
+
+.image-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  background-color: var(--font-base);
+  border: none;
+}
+
+input {
+  padding: var(--5px) var(--10px);
+}
+
+label {
+  display: flex;
+}
+
+button {
+  display: inline-block;
+  width: fit-content;
+  font-weight: 400;
+  font-size: var(--18px);
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  /* The words can't be selected. */
+  user-select: none;
+  background-color: var(--orange);
+  /* Gives the button a clean edge. */
+  border: 1px solid transparent;
+  padding: var(--10px) var(--20px);
+  border-radius: var(--30px);
+  transition: ease-in-out 0.1s;
+}
+
+button:disabled {
+  transform: none;
+  box-shadow: none;
+  cursor: default;
+  opacity: 0.7;
+}
+
+button:focus-visible {
+  outline: none;
+}
+
+button:hover {
+  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.app-width-wrapper {
+  max-width: var(--app-max-width);
+  width: var(--app-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(312px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(480px, 1fr));
+  column-gap: var(--150px);
+  row-gap: var(--50px);
+  justify-content: center;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  /* padding: var(--50px) var(--15px); */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+  color: var(--orange);
+}

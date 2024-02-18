@@ -1,0 +1,382 @@
+header {
+  background-color: var(--black);
+  padding: var(--8px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header .app-width-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--20px);
+  width: 90%;
+  max-width: 90%;
+}
+
+header .image-container {
+  width: var(--50px);
+}
+
+header i {
+  color: var(--orange);
+}
+
+/******************************* .title *******************************/
+
+.title {
+  background-color: var(--bg-gray);
+}
+
+.title .image-container {
+  width: 12.5rem;
+}
+
+.title .title-container div:nth-child(2) {
+  margin: var(--40px);
+}
+
+/**************************** .how-it-works ****************************/
+
+.card-wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin-top: var(--50px);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  max-width: 14.375rem;
+  text-align: center;
+  background-color: var(--white);
+  border: 3px solid var(--bg-gray);
+  padding: var(--20px);
+  align-items: center;
+}
+
+.card h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  height: 30%;
+  margin-bottom: var(--15px);
+}
+
+.card p {
+  text-align: left;
+  height: 70%;
+  color: var(--font-base);
+}
+
+/**************************** .our-mission ****************************/
+
+.our-mission {
+  background-color: var(--bg-gray);
+}
+
+.our-mission .grid-container > .image-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.our-mission .grid-container > .image-container img {
+  height: 100%;
+  max-width: fit-content;
+  width: fit-content;
+  position: absolute;
+  top: 0;
+}
+
+.our-mission-text {
+  display: grid;
+}
+
+.our-mission-text .image-container {
+  width: var(--150px);
+  margin-left: auto;
+  align-self: end;
+}
+
+.our-mission h2 {
+  color: var(--orange);
+}
+
+.required-field {
+  color: var(--red);
+}
+
+/***************************** .contact-us *****************************/
+
+.contact-us .app-width-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.contact-us form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  max-width: 25rem;
+  align-items: center;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: var(--5px) 0;
+  width: 100%;
+}
+
+.name-input-wrapper {
+  display: grid;
+  column-gap: var(--15px);
+  width: 100%;
+}
+
+.name-input-wrapper .first-name {
+  grid-column: 1 / 2;
+}
+
+.name-input-wrapper .last-name {
+  grid-column: 2 / 3;
+}
+
+textarea {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  min-height: var(--100px);
+  padding: var(--5px);
+}
+
+/******************************* footer *******************************/
+
+footer {
+  background-color: var(--black);
+  padding: var(--20px);
+}
+
+footer .app-width-wrapper {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  color: var(--orange);
+  height: fit-content;
+  width: 90%;
+  max-width: 90%;
+}
+
+footer .image-container {
+  width: var(--150px);
+  margin-right: var(--30px);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contact-info div:nth-child(2) {
+  margin: var(--10px) 0;
+}
+
+/**************************** .quote-modal ****************************/
+
+.modal-bg {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  pointer-events: fill;
+  z-index: 15;
+}
+
+.quote-modal {
+  display: none;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: fit-content;
+  max-width: 31.313rem;
+  height: fit-content;
+  max-height: 98vh;
+  padding: var(--50px);
+  background-color: var(--white);
+  overflow-y: auto;
+}
+
+.modalX {
+  position: absolute;
+  top: var(--30px);
+  right: var(--40px);
+  cursor: pointer;
+  font-weight: 400;
+  color: var(--font-light);
+}
+
+.modalX:hover {
+  color: var(--orange);
+}
+
+.quote-modal h2 {
+  margin-bottom: var(--20px);
+}
+
+.quote-modal form {
+  width: 100%;
+}
+
+.email-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.email-list span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--15px);
+  height: var(--15px);
+  border: 1px solid rgb(118, 118, 118);
+  color: var(--white);
+  font-size: var(--12px);
+  margin-right: var(--5px);
+}
+
+.email-list span.added {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+
+/************* .phone-inputs *************/
+
+#phone-inputs-wrapper {
+  display: flex;
+}
+
+.phone-inputs span {
+  display: flex;
+  text-align: center;
+  width: 33.33%;
+  align-items: center;
+}
+
+.phone-inputs input {
+  width: 4rem;
+  flex-grow: 1;
+  text-align: center;
+  margin: 0;
+}
+
+#phone-inputs-wrapper div {
+  flex-grow: 1;
+}
+
+/*************** Fade in and out animation ***************/
+
+/* fade-in */
+
+.modal-bg.fade-in {
+  position: fixed;
+  display: flex;
+  animation-name: fade-in;
+  animation-duration: 1s;
+}
+
+@keyframes fade-in {
+  0% {
+    position: fixed;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* fade-out */
+
+.modal-bg.fade-out {
+  animation-name: fade-out;
+  animation-duration: 2s;
+}
+
+@keyframes fade-out {
+  0% {
+    position: fixed;
+    display: flex;
+    opacity: 1;
+  }
+  100% {
+    display: flex;
+    position: fixed;
+    opacity: 0;
+  }
+}
+
+/*************** Slide in and out animation ***************/
+
+/* slide-in */
+
+.quote-modal.slide-in {
+  display: flex;
+  animation-name: slide-in;
+  animation-duration: 1s;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateY(100vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* slide-out */
+
+.quote-modal.slide-out {
+  animation-name: slide-out;
+  animation-duration: 1s;
+}
+
+@keyframes slide-out {
+  0% {
+    display: flex;
+    transform: translateY(0);
+  }
+  100% {
+    display: flex;
+    transform: translateY(100vh);
+  }
+}
+
+/*************************** .error-message ***************************/
+
+.error-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--5px);
+  margin-top: var(--5px);
+  background-color: var(--red);
+  color: var(--white);
+}
