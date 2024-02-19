@@ -2,6 +2,13 @@ import { useState } from "react";
 import { ContactForm } from "./components/ContactForm";
 import { Global } from "./utils/Global";
 import { QuoteModal } from "./components/QuoteModal";
+// Imported so the build script will include it in the 'dist' folder
+import {
+  TenXMarketingCertified,
+  EPLogoColor,
+  EPSymbolRed,
+  OurMissionStockPhoto,
+} from "./assets/images/ImageExports";
 
 function App() {
   const [viewingModal, setViewingModal] = useState<boolean>(false);
@@ -31,7 +38,7 @@ function App() {
       <header>
         <div className="app-width-wrapper">
           <div className="image-container">
-            <img src="./assets/images/EP-Symbol-Red.png" alt="EP symbol red" />
+            <img src={EPSymbolRed} alt="EP symbol red" />
           </div>
           <a href="https://www.instagram.com/elevationpeaks/" target="_blank">
             <i className="fa-brands fa-instagram"></i>
@@ -42,7 +49,7 @@ function App() {
       <section className="title">
         <div className="title-container">
           <div className="image-container">
-            <img src={Global.EPLogoColor} alt="EP logo color" />
+            <img src={EPLogoColor} alt="EP logo color" />
           </div>
           <div>
             <h3>Websites and ads that help your business grow!</h3>
@@ -78,13 +85,7 @@ function App() {
         <div className="app-width-wrapper">
           <div className="grid-container">
             <div className="image-container">
-              <img
-                src={
-                  Global.baseURL +
-                  "src/assets/images/our-mission-stock-photo.jpeg"
-                }
-                alt="our mission stock photo"
-              />
+              <img src={OurMissionStockPhoto} alt="our mission stock photo" />
             </div>
             <div className="our-mission-text">
               <div>
@@ -102,10 +103,7 @@ function App() {
               </div>
               <div className="image-container">
                 <img
-                  src={
-                    Global.baseURL +
-                    "src/assets/images/10x-marketing-certified.png"
-                  }
+                  src={TenXMarketingCertified}
                   alt="10x marketing certified"
                 />
               </div>
@@ -127,7 +125,7 @@ function App() {
       <footer>
         <div className="app-width-wrapper">
           <div className="image-container">
-            <img src={Global.EPSymbolRed} alt="EP symbol red" />
+            <img src={EPSymbolRed} alt="EP symbol red" />
           </div>
           <div className="contact-info">
             <div>801-899-5564</div>
