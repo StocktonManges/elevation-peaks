@@ -31,7 +31,7 @@ function App() {
       <header>
         <div className="app-width-wrapper">
           <div className="image-container">
-            <img src={Global.EPSymbolRed} alt="EP symbol red" />
+            <img src="./assets/images/EP-Symbol-Red.png" alt="EP symbol red" />
           </div>
           <a href="https://www.instagram.com/elevationpeaks/" target="_blank">
             <i className="fa-brands fa-instagram"></i>
