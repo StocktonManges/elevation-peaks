@@ -33,7 +33,6 @@ export const ContactForm = () => {
 
   const handleInvalidSubmit = () => {
     setIsSubmitted(true);
-    toast.error("Invalid form details.", { id: "invalidFormDetails" });
   };
 
   const resetContactForm = () => {

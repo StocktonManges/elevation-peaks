@@ -40,21 +40,25 @@ header i {
 /**************************** .how-it-works ****************************/
 
 .card-wrapper {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  gap: var(--15px);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(250px, 320px));
   margin-top: var(--50px);
+  justify-content: center;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  width: 30%;
-  max-width: 14.375rem;
+  width: 100%;
+  height: 100%;
   text-align: center;
   background-color: var(--white);
   border: 3px solid var(--bg-gray);
   padding: var(--20px);
   align-items: center;
+  justify-content: space-between;
 }
 
 .card h3 {
@@ -63,13 +67,13 @@ header i {
   justify-content: center;
   line-height: 1;
   height: 30%;
-  margin-bottom: var(--15px);
 }
 
 .card p {
   text-align: left;
-  height: 70%;
+  height: 60%;
   color: var(--font-base);
+  margin: 0;
 }
 
 /**************************** .our-mission ****************************/
@@ -118,10 +122,15 @@ header i {
   justify-items: center;
 }
 
+.contact-us .app-width-wrapper > div {
+  padding-bottom: var(--20px);
+}
+
 .contact-us form {
   display: flex;
   flex-direction: column;
   width: 50%;
+  min-width: 15.313rem;
   max-width: 25rem;
   align-items: center;
 }
@@ -137,14 +146,7 @@ header i {
   display: grid;
   column-gap: var(--15px);
   width: 100%;
-}
-
-.name-input-wrapper .first-name {
-  grid-column: 1 / 2;
-}
-
-.name-input-wrapper .last-name {
-  grid-column: 2 / 3;
+  grid-template-columns: repeat(auto-fit, minmax(191.25px, 1fr));
 }
 
 textarea {
@@ -153,6 +155,10 @@ textarea {
   min-width: 100%;
   min-height: var(--100px);
   padding: var(--5px);
+}
+
+.contact-us button {
+  margin-top: var(--20px);
 }
 
 /******************************* footer *******************************/
@@ -212,19 +218,25 @@ footer .image-container {
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: fit-content;
+  width: 50%;
+  min-width: 21.563rem;
   max-width: 31.313rem;
   height: fit-content;
   max-height: 98vh;
-  padding: var(--50px);
   background-color: var(--white);
+}
+
+.quote-modal > div {
+  height: 100%;
+  width: 100%;
   overflow-y: auto;
+  padding: var(--50px);
 }
 
 .modalX {
   position: absolute;
-  top: var(--30px);
-  right: var(--40px);
+  top: var(--20px);
+  right: var(--20px);
   cursor: pointer;
   font-weight: 400;
   color: var(--font-light);
@@ -236,10 +248,15 @@ footer .image-container {
 
 .quote-modal h2 {
   margin-bottom: var(--20px);
+  line-height: 1;
 }
 
 .quote-modal form {
   width: 100%;
+}
+
+.quote-modal .name-input-wrapper {
+  column-gap: 0.906rem;
 }
 
 .email-list {
@@ -264,6 +281,10 @@ footer .image-container {
 .email-list span.added {
   background-color: var(--orange);
   border-color: var(--orange);
+}
+
+.quote-modal button {
+  margin-top: var(--20px);
 }
 
 /************* .phone-inputs *************/
