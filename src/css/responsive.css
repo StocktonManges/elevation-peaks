@@ -1,5 +1,34 @@
-@media (max-width: 1023px) {
+@media (max-width: 959px) {
+  .card-wrapper {
+    grid-template-rows: 300px;
+  }
+
+  .card p {
+    height: 65%;
+  }
 }
 
 @media (max-width: 767px) {
+  .app-width-wrapper {
+    width: 90%;
+  }
+
+  .card-wrapper {
+    grid-template-columns: minmax(250px, 1fr);
+    grid-template-rows: repeat(3, 250px);
+  }
+
+  footer .app-width-wrapper {
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  footer .image-container {
+    margin-right: 0;
+    margin-bottom: var(--10px);
+  }
+
+  .contact-info {
+    align-items: center;
+  }
 }

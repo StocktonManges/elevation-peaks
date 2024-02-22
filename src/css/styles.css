@@ -42,16 +42,17 @@ header i {
 .card-wrapper {
   display: grid;
   gap: var(--15px);
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(250px, 320px));
+  grid-template-columns: repeat(3, minmax(175px, 1fr));
+  grid-template-rows: 250px;
   margin-top: var(--50px);
-  justify-content: center;
+  justify-items: center;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 250px;
   height: 100%;
   text-align: center;
   background-color: var(--white);
@@ -172,6 +173,7 @@ footer .app-width-wrapper {
   display: flex;
   justify-content: left;
   align-items: center;
+  flex-wrap: wrap;
   color: var(--orange);
   height: fit-content;
   width: 90%;
@@ -180,6 +182,7 @@ footer .app-width-wrapper {
 
 footer .image-container {
   width: var(--150px);
+  min-width: var(--150px);
   margin-right: var(--30px);
 }
 
@@ -222,7 +225,7 @@ footer .image-container {
   min-width: 21.563rem;
   max-width: 31.313rem;
   height: fit-content;
-  max-height: 98vh;
+  max-height: 90vh;
   background-color: var(--white);
 }
 
