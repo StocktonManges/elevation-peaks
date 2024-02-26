@@ -1,9 +1,10 @@
 import toast from "react-hot-toast";
 import { ErrorMessage } from "./ErrorMessage";
 import { ErrorMessages, Verify } from "../utils/ContactFormValidations";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { PhoneInputs } from "./PhoneInputs";
 import { PhoneInputState } from "../utils/Types";
+import emailjs from "@emailjs/browser";
 
 export const QuoteModal = ({
   viewingModal,
@@ -21,6 +22,28 @@ export const QuoteModal = ({
   const [messageInput, setMessageInput] = useState<string>("");
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
+  const form = useRef<HTMLFormElement>(null);
+
+  const sendEmail = () => {
+    return emailjs
+      .sendForm(
+        "service_w74c7gy",
+        "template_qaeqayj",
+        form.current ? form.current : "undefined",
+        {
+          publicKey: "e9EhloBrSvoxlhgMY",
+        }
+      )
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          throw new Error(error.text);
+        }
+      );
+  };
+
   const validationsPassed =
     firstNameInput.length > 0 &&
     lastNameInput.length > 0 &&
@@ -28,17 +51,13 @@ export const QuoteModal = ({
     messageInput.length > 0;
 
   const handleValidSubmit = () => {
-    setIsSubmitted(false);
-    resetForm();
-    toast.success("Message sent!");
-
-    console.log({
-      firstNameInput,
-      lastNameInput,
-      businessNameInput,
-      emailInput,
-      messageInput,
-    });
+    sendEmail()
+      .then(() => {
+        setIsSubmitted(false);
+        resetForm();
+        toast.success("Message sent!");
+      })
+      .catch((error) => console.log(error.message));
   };
 
   const handleInvalidSubmit = () => {
@@ -85,6 +104,9 @@ export const QuoteModal = ({
           </div>
           <h2>Get A Quote</h2>
           <form
+            ref={form}
+            action="https://formsubmit.co/stocktonmanges@gmail.com"
+            method="POST"
             onSubmit={(e) => {
               e.preventDefault();
               validationsPassed ? handleValidSubmit() : handleInvalidSubmit();
@@ -98,9 +120,10 @@ export const QuoteModal = ({
                 <input
                   type="text"
                   id="first-name"
+                  name="first-name"
                   value={firstNameInput}
                   onChange={(e) => {
-                    setFirstNameInput(e.target.value);
+                    setFirstNameInput(e.target.value.trim());
                   }}
                 />
                 <ErrorMessage
@@ -118,9 +141,10 @@ export const QuoteModal = ({
                 <input
                   type="text"
                   id="last-name"
+                  name="last-name"
                   value={lastNameInput}
                   onChange={(e) => {
-                    setLastNameInput(e.target.value);
+                    setLastNameInput(e.target.value.trim());
                   }}
                 />
                 <ErrorMessage
@@ -136,6 +160,7 @@ export const QuoteModal = ({
               <label htmlFor="business-name">Business Name</label>
               <input
                 type="text"
+                name="business-name"
                 id="business-name"
                 value={businessNameInput}
                 onChange={(e) => {
@@ -161,6 +186,7 @@ export const QuoteModal = ({
               </label>
               <input
                 type="text"
+                name="email"
                 id="email"
                 value={emailInput}
                 onChange={(e) => {
@@ -174,6 +200,13 @@ export const QuoteModal = ({
             </div>
 
             <div className="input-wrapper email-list">
+              <input
+                type="text"
+                name="add-to-email-list"
+                style={{ display: "none" }}
+                value={addToEmailList ? "yes" : "no"}
+                readOnly
+              />
               <span
                 className={addToEmailList ? "added" : ""}
                 onClick={() => {

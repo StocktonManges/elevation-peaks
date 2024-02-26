@@ -2,6 +2,8 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { ErrorMessage } from "./ErrorMessage";
 import { ErrorMessages, Verify } from "../utils/ContactFormValidations";
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 export const ContactForm = () => {
   const [firstNameInput, setFirstNameInput] = useState<string>("");
@@ -11,6 +13,28 @@ export const ContactForm = () => {
   const [messageInput, setMessageInput] = useState<string>("");
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
+  const form = useRef<HTMLFormElement>(null);
+
+  const sendEmail = () => {
+    return emailjs
+      .sendForm(
+        "service_xs4ogz7",
+        "template_cd672cy",
+        form.current ? form.current : "undefined",
+        {
+          publicKey: "e9EhloBrSvoxlhgMY",
+        }
+      )
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          throw new Error(error.text);
+        }
+      );
+  };
+
   const validationsPassed =
     firstNameInput.length > 0 &&
     lastNameInput.length > 0 &&
@@ -18,17 +42,13 @@ export const ContactForm = () => {
     messageInput.length > 0;
 
   const handleValidSubmit = () => {
-    setIsSubmitted(false);
-    resetContactForm();
-    toast.success("Message sent!");
-
-    console.log({
-      firstNameInput,
-      lastNameInput,
-      businessNameInput,
-      emailInput,
-      messageInput,
-    });
+    sendEmail()
+      .then(() => {
+        setIsSubmitted(false);
+        resetContactForm();
+        toast.success("Message sent!");
+      })
+      .catch((error) => console.log(error.message));
   };
 
   const handleInvalidSubmit = () => {
@@ -46,6 +66,7 @@ export const ContactForm = () => {
   return (
     <>
       <form
+        ref={form}
         onSubmit={(e) => {
           e.preventDefault();
           validationsPassed ? handleValidSubmit() : handleInvalidSubmit();
@@ -59,9 +80,10 @@ export const ContactForm = () => {
             <input
               type="text"
               id="first-name"
+              name="first-name"
               value={firstNameInput}
               onChange={(e) => {
-                setFirstNameInput(e.target.value);
+                setFirstNameInput(e.target.value.trim());
               }}
             />
             <ErrorMessage
@@ -77,9 +99,10 @@ export const ContactForm = () => {
             <input
               type="text"
               id="last-name"
+              name="last-name"
               value={lastNameInput}
               onChange={(e) => {
-                setLastNameInput(e.target.value);
+                setLastNameInput(e.target.value.trim());
               }}
             />
             <ErrorMessage
@@ -94,6 +117,7 @@ export const ContactForm = () => {
           <input
             type="text"
             id="business-name"
+            name="business-name"
             value={businessNameInput}
             onChange={(e) => {
               setBusinessNameInput(e.target.value);
@@ -108,6 +132,7 @@ export const ContactForm = () => {
           <input
             type="text"
             id="email"
+            name="email"
             value={emailInput}
             onChange={(e) => {
               setEmailInput(e.target.value);
@@ -124,8 +149,8 @@ export const ContactForm = () => {
             Message<span className="required-field">*</span>
           </label>
           <textarea
-            name="message"
             id="message"
+            name="message"
             value={messageInput}
             onChange={(e) => {
               setMessageInput(e.target.value);

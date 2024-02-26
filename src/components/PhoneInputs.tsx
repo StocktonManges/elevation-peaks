@@ -60,6 +60,7 @@ export const PhoneInputs = ({
             <span key={index}>
               <input
                 type="text"
+                name={"phone-input-" + (Number(index) + 1)}
                 ref={refs[index]}
                 id={`phone-input-${index + 1}`}
                 value={phoneInput[index]}
