@@ -66,7 +66,8 @@ export const ContactForm = () => {
   return (
     <>
       <form
-        netlify
+        action="POST"
+        data-netlify="true"
         ref={form}
         onSubmit={(e) => {
           e.preventDefault();
@@ -162,6 +163,8 @@ export const ContactForm = () => {
             message={ErrorMessages.messageMessage}
           />
         </div>
+
+        <div data-netlify-recaptcha="true"></div>
 
         <button type="submit">Send</button>
       </form>

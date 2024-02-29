@@ -104,9 +104,9 @@ export const QuoteModal = ({
           </div>
           <h2>Get A Quote</h2>
           <form
-            netlify
+            action="POST"
+            data-netlify="true"
             ref={form}
-            action="https://formsubmit.co/stocktonmanges@gmail.com"
             method="POST"
             onSubmit={(e) => {
               e.preventDefault();
@@ -244,6 +244,8 @@ export const QuoteModal = ({
                 message={ErrorMessages.messageMessage}
               />
             </div>
+
+            <div data-netlify-recaptcha="true"></div>
 
             <button type="submit">Submit</button>
           </form>
