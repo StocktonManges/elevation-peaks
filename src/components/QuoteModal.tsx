@@ -104,6 +104,7 @@ export const QuoteModal = ({
           </div>
           <h2>Get A Quote</h2>
           <form
+            netlify
             ref={form}
             action="https://formsubmit.co/stocktonmanges@gmail.com"
             method="POST"

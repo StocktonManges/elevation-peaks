@@ -10,7 +10,7 @@ export const ErrorMessages = {
 export const Verify = {
   isMessageValid: (bioInput: string) => {
     const regex = /^(?:\S+\s+){1,}\S+$/;
-    return !!bioInput.match(regex);
+    return !!bioInput.trim().match(regex);
   },
 
   isNameValid: (nameInput: string) => {

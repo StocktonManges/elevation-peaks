@@ -66,6 +66,7 @@ export const ContactForm = () => {
   return (
     <>
       <form
+        netlify
         ref={form}
         onSubmit={(e) => {
           e.preventDefault();
