@@ -66,7 +66,8 @@ export const ContactForm = () => {
   return (
     <>
       <form
-        action="POST"
+        name="contact-us"
+        method="POST"
         data-netlify="true"
         ref={form}
         onSubmit={(e) => {

@@ -1,10 +1,21 @@
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import { ErrorMessage } from "./ErrorMessage";
 import { ErrorMessages, Verify } from "../utils/ContactFormValidations";
 import { useRef, useState } from "react";
 import { PhoneInputs } from "./PhoneInputs";
 import { PhoneInputState } from "../utils/Types";
-import emailjs from "@emailjs/browser";
+// import emailjs from "@emailjs/browser";
+
+type State = {
+  "form-name": string;
+  firstNameInput: string;
+  lastNameInput: string;
+  phoneInput: string;
+  businessNameInput: string;
+  emailInput: string;
+  addToEmailList: boolean;
+  messageInput: string;
+};
 
 export const QuoteModal = ({
   viewingModal,
@@ -21,28 +32,49 @@ export const QuoteModal = ({
   const [addToEmailList, setAddToEmailList] = useState<boolean>(false);
   const [messageInput, setMessageInput] = useState<string>("");
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const state = {
+    firstNameInput,
+    lastNameInput,
+    phoneInput: phoneInput.join("-"),
+    businessNameInput,
+    emailInput,
+    addToEmailList,
+    messageInput,
+  };
 
   const form = useRef<HTMLFormElement>(null);
 
-  const sendEmail = () => {
-    return emailjs
-      .sendForm(
-        "service_w74c7gy",
-        "template_qaeqayj",
-        form.current ? form.current : "undefined",
-        {
-          publicKey: "e9EhloBrSvoxlhgMY",
-        }
-      )
-      .then(
-        () => {
-          console.log("SUCCESS!");
-        },
-        (error) => {
-          throw new Error(error.text);
-        }
-      );
+  const encode = (data: State) => {
+    const values = Object.values(data);
+    return Object.keys(data)
+      .map((key, index) => {
+        console.log(key + ": " + values[index]);
+        return (
+          encodeURIComponent(key) + "=" + encodeURIComponent(values[index])
+        );
+      })
+      .join("&");
   };
+
+  // const sendEmail = () => {
+  //   return emailjs
+  //     .sendForm(
+  //       "service_w74c7gy",
+  //       "template_qaeqayj",
+  //       form.current ? form.current : "undefined",
+  //       {
+  //         publicKey: "e9EhloBrSvoxlhgMY",
+  //       }
+  //     )
+  //     .then(
+  //       () => {
+  //         console.log("SUCCESS!");
+  //       },
+  //       (error) => {
+  //         throw new Error(error.text);
+  //       }
+  //     );
+  // };
 
   const validationsPassed =
     firstNameInput.length > 0 &&
@@ -51,13 +83,21 @@ export const QuoteModal = ({
     messageInput.length > 0;
 
   const handleValidSubmit = () => {
-    sendEmail()
-      .then(() => {
-        setIsSubmitted(false);
-        resetForm();
-        toast.success("Message sent!");
-      })
-      .catch((error) => console.log(error.message));
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "get-a-quote", ...state }),
+    })
+      .then(() => alert("Success!"))
+      .catch((error) => alert(error));
+
+    // sendEmail()
+    //   .then(() => {
+    //     setIsSubmitted(false);
+    //     resetForm();
+    //     toast.success("Message sent!");
+    //   })
+    //   .catch((error) => console.log(error.message));
   };
 
   const handleInvalidSubmit = () => {
@@ -104,6 +144,7 @@ export const QuoteModal = ({
           </div>
           <h2>Get A Quote</h2>
           <form
+            name="get-a-quote"
             action="POST"
             data-netlify="true"
             ref={form}
@@ -244,8 +285,6 @@ export const QuoteModal = ({
                 message={ErrorMessages.messageMessage}
               />
             </div>
-
-            <div data-netlify-recaptcha="true"></div>
 
             <button type="submit">Submit</button>
           </form>
